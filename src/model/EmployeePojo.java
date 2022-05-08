@@ -48,7 +48,7 @@ public class EmployeePojo {
 	public void raiseSalary(double byPercent)
 	{
 		double raise = salary * byPercent / 100;
-		salary += raise;
+		this.salary += raise;
 	}
 
 	public int getEmployeeId() {

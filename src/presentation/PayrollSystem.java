@@ -25,7 +25,8 @@ public class PayrollSystem {
 			System.out.println("2. Add a new Employee");
 			System.out.println("3. Delete an Employee");
 			System.out.println("4. Update an Employee");
-			System.out.println("5. Exit");
+			System.out.println("5. Give an Employee a Raise");
+			System.out.println("6. Exit");
 			System.out.println("*****************************");
 			System.out.println("Please enter an option:");
 			int option = scan.nextInt();
@@ -109,11 +110,11 @@ public class PayrollSystem {
 							employeeService.updateEmployee(edEmp);
 							break;
 						case 2:
-							System.out.println("current description is: " + edEmp.getSalary() );
-							System.out.println("enter new description:");
+							System.out.println("current salary is: " + edEmp.getSalary() );
+							System.out.println("enter new salary:");
 							scan.nextLine();
-							double newDescr = scan.nextDouble();
-							edEmp.setSalary(newDescr);
+							double newSalary = scan.nextDouble();
+							edEmp.setSalary(newSalary);
 							employeeService.updateEmployee(edEmp);
 							break;
 						case 3:
@@ -142,6 +143,30 @@ public class PayrollSystem {
 					proceed = scan.next().charAt(0);
 					break;
 				case 5:
+					List<EmployeePojo> omniEmployees = employeeService.getAllEmployees();
+					System.out.println("***************************************************************************************");
+					System.out.println("ID\tNAME");
+					System.out.println("***************************************************************************************");
+					omniEmployees.forEach((item)-> System.out.println(item.getEmployeeId() + "\t" + item.getName()));
+					System.out.println("***************************************************************************************");
+					System.out.println("Enter the ID of the employee to whom you would like to give a raise: ");
+					int edItem = scan.nextInt();
+					EmployeePojo edEmp = employeeService.getAnEmployee(edItem);
+					System.out.println("current salary is: " + edEmp.getSalary() );
+					System.out.println("enter a percentage by which salary will be increased:");
+					scan.nextLine();
+					double raisePerc = scan.nextDouble();
+					edEmp.raiseSalary(raisePerc);
+					/*double currSal = edEmp.getSalary();
+					double raise = currSal + currSal * raisePerc / 100;
+					edEmp.setSalary(raise);
+					employeeService.updateEmployee(edEmp);*/
+					System.out.println("new salary is: " + edEmp.getSalary() );
+					System.out.println("***************************************************************************************");
+					System.out.println("Do you want to continue?(y/n)");
+					proceed = scan.next().charAt(0);
+					break;
+				case 6:
 					System.out.println("***************************************************************************************");
 					System.out.println("Thank you for using Payroll System!!");
 					System.out.println("***************************************************************************************");

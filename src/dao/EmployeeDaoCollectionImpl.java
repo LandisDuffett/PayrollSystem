@@ -1,6 +1,7 @@
 package dao;
 import java.util.ArrayList;
 import model.EmployeePojo;
+import exception.EmptyPayrollException;
 
 import java.util.Iterator;
 import java.util.List;
@@ -58,7 +59,11 @@ public class EmployeeDaoCollectionImpl implements EmployeeDao{
 	}
 
 	@Override
-	public List<EmployeePojo> getAllEmployees() {
+	public List<EmployeePojo> getAllEmployees()throws EmptyPayrollException {
+		if(allEmployees.isEmpty()) {
+			EmptyPayrollException epe = new EmptyPayrollException();
+			throw epe;
+		}
 		return allEmployees;
 	}
 

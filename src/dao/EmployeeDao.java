@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.List;
+
+import exception.EmptyPayrollException;
 import model.EmployeePojo;
 
 public interface EmployeeDao {
@@ -11,7 +13,7 @@ public interface EmployeeDao {
 	
 	void deleteEmployee(int employeeId); // Delete
 	
-	List<EmployeePojo> getAllEmployees(); // Read
+	List<EmployeePojo> getAllEmployees()throws EmptyPayrollException; // Read
 	
 	EmployeePojo getAnEmployee(int employeeId); // Read
 	

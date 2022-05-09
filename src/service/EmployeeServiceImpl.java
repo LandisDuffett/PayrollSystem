@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.EmployeeDao;
 import dao.EmployeeDaoCollectionImpl;
+import exception.EmptyPayrollException;
 import model.EmployeePojo;
 
 public class EmployeeServiceImpl implements EmployeeService{
@@ -30,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public List<EmployeePojo> getAllEmployees() {
+	public List<EmployeePojo> getAllEmployees()throws EmptyPayrollException {
 		return employeeDao.getAllEmployees();
 	}
 

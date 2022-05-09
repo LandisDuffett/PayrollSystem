@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+import exception.EmptyPayrollException;
 import model.EmployeePojo;
 import service.EmployeeService;
 import service.EmployeeServiceImpl;
@@ -33,7 +34,13 @@ public class PayrollSystem {
 			System.out.println("*****************************");
 			switch(option) {
 				case 1:
-					List<EmployeePojo> everyEmployee = employeeService.getAllEmployees();
+				List<EmployeePojo> everyEmployee;
+				try {
+					everyEmployee = employeeService.getAllEmployees();
+				} catch (EmptyPayrollException e) {
+					System.out.println(e.getMessage());
+					break;
+				}
 					System.out.println("***************************************************************************************");
 					System.out.println("ID\tNAME\tSALARY\tHIRE_DAY");
 					System.out.println("***************************************************************************************");
@@ -66,7 +73,13 @@ public class PayrollSystem {
 					proceed = scan.next().charAt(0);
 					break;
 				case 3:
-					List<EmployeePojo> allEmployees = employeeService.getAllEmployees();
+				List<EmployeePojo> allEmployees;
+				try {
+					allEmployees = employeeService.getAllEmployees();
+				} catch (EmptyPayrollException e) {
+					System.out.println(e.getMessage());
+					break;
+				}
 					System.out.println("***************************************************************************************");
 					System.out.println("ID\tNAME");
 					System.out.println("***************************************************************************************");
@@ -82,7 +95,13 @@ public class PayrollSystem {
 				case 4:
 					char cont = 'y';
 					while(cont == 'y') {
-					List<EmployeePojo> omniEmployees = employeeService.getAllEmployees();
+					List<EmployeePojo> omniEmployees;
+					try {
+						omniEmployees = employeeService.getAllEmployees();
+					} catch (EmptyPayrollException e) {
+						System.out.println(e.getMessage());
+						break;
+					}
 					System.out.println("***************************************************************************************");
 					System.out.println("ID\tNAME");
 					System.out.println("***************************************************************************************");
@@ -143,7 +162,13 @@ public class PayrollSystem {
 					proceed = scan.next().charAt(0);
 					break;
 				case 5:
-					List<EmployeePojo> omniEmployees = employeeService.getAllEmployees();
+				List<EmployeePojo> omniEmployees;
+				try {
+					omniEmployees = employeeService.getAllEmployees();
+				} catch (EmptyPayrollException e) {
+					System.out.println(e.getMessage());
+					break;
+				}
 					System.out.println("***************************************************************************************");
 					System.out.println("ID\tNAME");
 					System.out.println("***************************************************************************************");
